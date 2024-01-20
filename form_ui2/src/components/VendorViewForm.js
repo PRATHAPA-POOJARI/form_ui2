@@ -1,14 +1,15 @@
+// VendorViewForm.js
 import React from 'react';
 import { Paper, Typography, TextField } from '@mui/material';
 
 const VendorViewForm = ({ vendor }) => {
-  const excludedFields = ['id', 'version'];
+  const excludedFields = ['_id', '__v']; // Add the fields you want to exclude
+ 
 
   return (
     <Paper style={{ padding: 10, maxWidth: 250, margin: 'auto', marginTop: 10, border: '1px solid #ccc', borderRadius: 8 }}>
-      <Typography variant="h4" sx={{ textAlign: 'center' }}>{`View ${vendor.vendorName}`}</Typography>
+      {/* <Typography variant="h4" sx={{ textAlign: 'center' }}>{`View ${vendor.vendorName}`}</Typography> */}
 
-      {/* Display non-address fields first */}
       {Object.keys(vendor).map((key) => (
         excludedFields.includes(key) ? null : key !== 'address' && (
           <TextField
@@ -22,9 +23,9 @@ const VendorViewForm = ({ vendor }) => {
         )
       ))}
 
-      {/* Display address fields separately */}
       {Object.keys(vendor).map((key) => (
         excludedFields.includes(key) ? null : key === 'address' && (
+          // Render address fields separately (if needed)
           <div key={key} sx={{ textAlign: 'center', marginTop: 2 }}>
             <Typography variant="h6">Address:</Typography>
             {Object.keys(vendor.address).map((addressKey) => (
