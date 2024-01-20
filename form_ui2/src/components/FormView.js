@@ -1,10 +1,10 @@
-// VendorView.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Typography, Paper } from '@mui/material';
 import VendorList from './VendorList';
 import VendorEditForm from './VendorEditForm';
-
+import VendorViewForm from './VendorViewForm';
 
 const VendorView = () => {
   const [vendors, setVendors] = useState([]);
@@ -12,6 +12,11 @@ const VendorView = () => {
   const [error, setError] = useState(null);
   const [selectedVendor, setSelectedVendor] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditVendor = (vendor) => {
+    setSelectedVendor(vendor);
+    setIsEditing(true);
+  };
 
   useEffect(() => {
     const fetchVendors = async () => {
@@ -43,20 +48,14 @@ const VendorView = () => {
     setIsEditing(false);
   };
 
-  const handleEditVendor = (vendor) => {
-    setSelectedVendor(vendor);
-    setIsEditing(true);
-  };
-
   const handleSaveEdit = async (editedVendor) => {
     try {
-      // Update the vendor on the server
+      
       await axios.put(`http://localhost:9000/update-vendor/${editedVendor._id}`, editedVendor);
 
-      // Update the vendors state
       setVendors((prevVendors) => prevVendors.map((v) => (v._id === editedVendor._id ? editedVendor : v)));
 
-      // Reset selectedVendor and isEditing
+    
       setSelectedVendor(null);
       setIsEditing(false);
     } catch (error) {
@@ -80,12 +79,12 @@ const VendorView = () => {
       ) : (
         <div>
           {selectedVendor ? (
-            <VendorEditForm vendor={selectedVendor} />
+            <VendorViewForm vendor={selectedVendor} />
           ) : (
             <VendorList vendors={vendors} onDelete={handleDelete} onView={handleViewVendor} onEdit={handleEditVendor} />
           )}
         </div>
-      )}
+      )}Edit
     </div>
   );
 };
