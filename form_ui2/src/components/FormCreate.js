@@ -45,7 +45,7 @@ const VendorCreate = ({ history }) => {
       [property]: value,
     }));
 
-    // Clear validation error when user starts typing in the field
+    
     setValidationErrors((prevErrors) => ({
       ...prevErrors,
       [property]: false,
@@ -74,7 +74,7 @@ const VendorCreate = ({ history }) => {
       setLoading(true);
       setError(null);
 
-      // Validate required fields
+     
       if (!vendor.bankName) {
         setValidationErrors((prevErrors) => ({
           ...prevErrors,
@@ -87,13 +87,13 @@ const VendorCreate = ({ history }) => {
 
       const response = await axios.post('http://localhost:9000/create-vendor', vendor);
 
-      // Axios automatically parses JSON responses, so no need to call response.json()
+      
       console.log('Vendor saved successfully:', response.data);
 
-      // Set success state to true
+      
       setSuccess(true);
 
-      // Clear success message after 3 seconds (adjust as needed)
+      
       setTimeout(() => setSuccess(false), 3000);
     } catch (error) {
       console.error('Error saving vendor:', error.message);
@@ -150,7 +150,7 @@ const VendorCreate = ({ history }) => {
               error={validationErrors.bankName}
               helperText={validationErrors.bankName && 'Bank Name is required.'}
             />
-            {/* <h2>Address</h2> */}
+            
             <TextField
               id="addressLine1"
               label="Address Line 1"
