@@ -36,7 +36,7 @@ const Home = ({ forms, setForms }) => {
         </ul>
         <Link to="/form/create">
           <Button variant="contained" sx={{ backgroundColor: 'red', color: 'white' }}>
-            Create Form
+            Vendor Form
           </Button>
         </Link>
       </Box>
