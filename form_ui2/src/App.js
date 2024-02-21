@@ -35,21 +35,14 @@ function App() {
               View All Forms
             </Button>
           </Toolbar>
-        </AppBar>
-
+        </AppBar> 
         <Routes>
           <Route path="/" element={<Home forms={forms} />} />
           <Route path="/form/create" element={<FormCreate addForm={addForm} />} />
-         
+        
           <Route path="/forms/all" element={<FormView forms={forms} />} />
-
-          {/* <Route path="/form/:id" element={<FormView />} /> */}
-          {/* <Route path=  "/form/:id" component={FormView} /> */}
-          {/* <Route path="/vendor/view/:id" element={<VendorDetailView />} /> */}
-          {/* <Route path="/form/view/:formId" component={FormDetailView} /> */}
-          {/* <Route path="/form/:id" element={<FormView />} /> */}
         </Routes>
-      
+  
     </Router>
     </div>
   );
